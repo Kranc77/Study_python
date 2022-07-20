@@ -1947,6 +1947,8 @@ window.mainloop()
 # ------------------------------------------------
 from tkinter import *
 import time
+from Ball import *
+
 window = Tk()
 WIDTH = 500
 HEIGHT = 500
@@ -1954,7 +1956,16 @@ HEIGHT = 500
 canvas = Canvas(window, width=WIDTH, height=HEIGHT)
 canvas.pack()
 
-voll_ball = Ball()
+volley_ball = Ball(canvas,0,0,100,1,1,"white") # towrzymy dzieki klasie
+tennis_ball = Ball(canvas,0,0,50,4,3,"yellow")
+basket_ball = Ball(canvas,0,0,125,8,7,"orange")
+
+while True:
+    volley_ball.move()  # włączamy piłkę do pętli oraz nadajemy jej funkcję move() z klasy Ball
+    tennis_ball.move()
+    basket_ball.move()
+    window.update()
+    time.sleep(0.01)
 
 window.mainloop()
 
