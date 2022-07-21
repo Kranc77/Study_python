@@ -1,4 +1,5 @@
 # plik poświęcony kursowi na YT
+import smtplib
 import time
 # pętla while
 '''
@@ -1945,6 +1946,7 @@ window.mainloop()
 # ------------------------------------------------
 # animate multiple objects
 # ------------------------------------------------
+'''
 from tkinter import *
 import time
 from Ball import *
@@ -1968,4 +1970,107 @@ while True:
     time.sleep(0.01)
 
 window.mainloop()
+'''
+# ------------------------------------------------
+# clock gui program
+# ------------------------------------------------
+'''
+from tkinter import *
+from time import *
+
+def update():
+    time_string = strftime("%I:%M:%S %p")    # zamienia czas na odpowiedni format w stringu
+    time_label.config(text = time_string)
+
+    day_string = strftime("%A")  # zamienia dzień
+    day_label.config(text=day_string)
+
+    date_string = strftime("%B %d, %Y")  # zamienia datę
+    date_label.config(text=date_string)
+
+    window.after(1000, update) # sama się wykonuje co 1000 ms
+window = Tk()
+
+time_label = Label(window, font=("Arial",35), fg="#00FF00", bg="black")
+time_label.pack()
+
+day_label = Label(window, font=("Ink Free",25))
+day_label.pack()
+
+date_label = Label(window, font=("Ink Free",25))
+date_label.pack()
+
+update()
+window.mainloop()
+'''
+# ------------------------------------------------
+# send a email
+# ------------------------------------------------
+'''
+# to nie działa - nie próbowałem na prawdziwym email - wtedy powinno 
+import smtplib
+
+sender = "render@gmail.com"
+reciver = "reciver@gmial.com"
+password = "password123"
+subject = "Python email test"
+body = "I wrote an email! :D "
+
+# header
+message = f""" From: {sender}
+To: {reciver}
+Subject: {subject}\n
+{body}
+"""
+
+server = smtplib.SMTP("stmp.gmail.com", 587)
+server.starttls()
+try:
+    server.login(sender, password)
+    print("Logged in ...")
+    server.sendmail(sender, reciver, message)
+    print("Email has been sent!")
+
+except smtplib.SMTPAuthenticationError:
+    print("Unable to sign in")
+'''
+# ------------------------------------------------
+# run .py file with cmd
+# ------------------------------------------------
+'''
+print("hello world! ")
+
+name = input("What's your name?: ")
+
+print("Hello "+ name)
+
+# czyli w cmd dajemy: python scieżka_do_pliku
+'''
+# ------------------------------------------------
+# Python pip
+# ------------------------------------------------
+# pip = package manager for packages and modules from Python Package Index
+
+# included for Python versions 3,4+
+# open comand prompt
+
+# help:                     pip
+# check:                    pip --verison
+# update:                   pip install --upgrade pip
+# installed packages:       pip list
+# check outdated packages:  pip list --outdated
+# install a package:        pip install "package name"
+# ***************************************************************************
+
+
+
+# ------------------------------------------------
+# convert a python file to an executable
+# ------------------------------------------------
+
+# przechodzimy do folderu w cmd do którego wrzuciliśmy nasz program py
+# następnie wpisujemy: pyinstaller -F -w -i icon.ico nazwa.py
+# -i icon.ico jest gdy chcemy dodać własną ikonę programu
+
+
 
